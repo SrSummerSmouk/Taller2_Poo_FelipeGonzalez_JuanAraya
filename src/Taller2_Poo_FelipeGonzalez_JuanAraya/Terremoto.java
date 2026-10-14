@@ -1,4 +1,4 @@
-package Taller2_Poo_FelipeGonzalez_JuanAraya;
+  package Taller2_Poo_FelipeGonzalez_JuanAraya;
 
 public class Terremoto {
 	private String participanteString;

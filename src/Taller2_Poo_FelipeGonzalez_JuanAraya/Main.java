@@ -15,7 +15,7 @@ public class Main {
 	static int cantTerre = 0;
 
 	public static void main(String[] args) {
-
+		
 	}
 
 	private static void lectorConsumo() {
@@ -45,6 +45,7 @@ public class Main {
 
 				}
 			}
+			System.out.println("arch Consumo.txt cargado.");
 			scanner.close();
 		} catch (FileNotFoundException e) {
 			// TODO: handle exception
@@ -58,12 +59,19 @@ public class Main {
 			Scanner scanner = new Scanner(new File("Participantes.txt"));
 			while (scanner.hasNextLine()) {
 				String nombre = scanner.nextLine().trim();
-
+				personas[cantPersonas] = new Persona(nombre);
+				cantPersonas++;
 			}
+			scanner.close();
+			System.out.println("arch Participantes cargado.");
 		} catch (FileNotFoundException e) {
 			// TODO: handle exception
 			System.out.println("arch Participantes.txt: " + e);
 
 		}
+	}
+	
+	private static void menu() {
+		
 	}
 }
