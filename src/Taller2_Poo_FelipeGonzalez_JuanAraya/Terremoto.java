@@ -22,4 +22,8 @@ public class Terremoto {
 		this.litros = litros;
 		this.fecha = fecha;
 	}
+	
+	public double calcularKcalTerremoto() {
+		return (litros*10)/3;
+	}
 }

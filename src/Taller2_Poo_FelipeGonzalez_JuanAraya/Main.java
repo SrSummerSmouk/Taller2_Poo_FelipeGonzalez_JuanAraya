@@ -1,7 +1,10 @@
 package Taller2_Poo_FelipeGonzalez_JuanAraya;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 //Integrante 1: Juan Araya, RUT: 21.566.260-8, Carrera: ITI
@@ -15,7 +18,7 @@ public class Main {
 	static int cantTerre = 0;
 
 	public static void main(String[] args) {
-		
+		menu();
 	}
 
 	private static void lectorConsumo() {
@@ -70,8 +73,39 @@ public class Main {
 
 		}
 	}
-	
+	//AQUI MENU, JUAN
 	private static void menu() {
+		System.out.println("---BIENVENIDO AL MENU---\n");
+		// esta es tu parte
 		
+	}	
+
+	// juan igual echale un vistazo, esto es mas o menos un copia y pega de mi
+	// taller 1 asique capaz se me olvido cambiar algo
+	private static void sobreEscribirConsumo() {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter("Consumido.txt"))) {
+
+			// este de aqui es para escribir chiropanes btw
+			for (int i = 0; i < cantChori; i++) {
+				if (choripanesHistorial[i] != null) {
+					String line = "Choripan," + choripanesHistorial[i].getParticipante() + ","
+							+ choripanesHistorial[i].getLargo() + "," + choripanesHistorial[i].getAncho() + ","
+							+ choripanesHistorial[i].getFecha();
+					bw.write(line);
+					bw.newLine();
+				}
+			}
+			// y este para terremotos
+			for (int i = 0; i < cantTerre; i++) {
+				String line = "Terremoto," + terremotosHistorial[i].getParticipanteString() + ","
+						+ terremotosHistorial[i].getLitros() + "," + terremotosHistorial[i].getFecha();
+				bw.write(line);
+				bw.newLine();
+			}
+			System.out.println("Archivo Consumido.txt actualizado (no se rompio)\n");
+		} catch (IOException e) {
+			// TODO: handle exception
+			System.out.println("[ERROR] NO SE PUEDE SOBREESCRIBIR CONSUMIDO.TXT\n");
+		}
 	}
 }

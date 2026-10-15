@@ -29,4 +29,8 @@ public class Choripan {
 		this.fecha = fecha;
 	}
 
+	//este es el metodo para calcular kcal
+	public double cancularKcalChoripan() {
+		return (largo*ancho)/3;
+	}
 }
