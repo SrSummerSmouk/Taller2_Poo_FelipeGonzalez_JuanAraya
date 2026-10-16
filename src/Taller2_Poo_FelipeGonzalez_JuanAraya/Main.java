@@ -466,7 +466,7 @@ public class Main {
 	        return false;
 	    }
 	}
-
+	//esto es para leer un double sin que tire error
 	private static double leerDouble(String prompt) {
 	    while (true) {
 	        System.out.print(prompt);
@@ -487,7 +487,7 @@ public class Main {
 	        }
 	    }
 	}
-	
+	//esto es para leer un numero y evitar algun error
 	private static int leerEnteroPositivo(String prompt) {
 	    while (true) {
 	        System.out.print(prompt);
@@ -751,7 +751,7 @@ public class Main {
 			System.out.println("[ERROR] NO SE PUEDE SOBREESCRIBIR CONSUMIDO.TXT\n");
 		}
 	}
-	
+	//un poco de ayuda en redondear un numero
 	private static String redondear(double v) {
 	    long r = (long) (v * 100 + 0.5);
 	    long ent = r / 100;
