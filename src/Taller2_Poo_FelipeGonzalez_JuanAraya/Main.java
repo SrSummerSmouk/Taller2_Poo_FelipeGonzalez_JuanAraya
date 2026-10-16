@@ -82,7 +82,7 @@ public class Main {
 			System.out.print(prompt);
 			String linea = sc.nextLine().trim();
 			if (linea.isEmpty()) {
-				System.out.println(">> Error: no ingreso ninguna opcion. Intente nuevamente.");
+				System.out.println("Error: no ingreso ninguna opcion. Intente nuevamente.");
 				continue;
 			}
 			try {
