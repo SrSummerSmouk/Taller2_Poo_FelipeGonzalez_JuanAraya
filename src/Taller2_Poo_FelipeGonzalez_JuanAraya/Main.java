@@ -16,6 +16,7 @@ public class Main {
 	static int cantChori = 0;
 	static Terremoto[] terremotosHistorial = new Terremoto[200];
 	static int cantTerre = 0;
+	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		lectorParticipantes();
@@ -75,12 +76,54 @@ public class Main {
 
 		}
 	}
+	
+	private static int leerEntero(String prompt, int min, int max) {
+		while (true) {
+			System.out.print(prompt);
+			String linea = sc.nextLine().trim();
+			if (linea.isEmpty()) {
+				System.out.println(">> Error: no ingreso ninguna opcion. Intente nuevamente.");
+				continue;
+			}
+			try {
+				int v = Integer.parseInt(linea);
+				if (v < min || v > max) {
+					System.out.println("Error: opcion fuera de rango. Intente nuevamente.");
+					continue;
+				}
+				return v;
+			} catch (NumberFormatException e) {
+				System.out.println("Error: la opcion debe ser un numero entre " + min + " y " + max + ".");
+			}
+		}
+	}
+
+	
+	
 	//AQUI MENU, JUAN
 	private static void menu() {
-		System.out.println("---BIENVENIDO AL MENU---\n");
-		// esta es tu parte
 		
-	}	
+		int opcion;
+		do {
+			System.out.println();
+			System.out.println("===========================================");
+			System.out.println("LA FONDA PAPU");
+			System.out.println("Registros cargados: " + (cantChori + cantTerre));
+			System.out.println("1) Ver registros");
+			System.out.println("2) Actualizar registros");
+			System.out.println("3) Calcular metricas");
+			System.out.println("4) Salir");
+			opcion = leerEntero("Seleccione una opcion: ", 1, 4);
+
+			switch (opcion) {
+				case 1: menuVerRegistros(); break;
+				case 2: menuActualizar(); break;
+				case 3: menuMetricas(); break;
+				case 4: System.out.println("Hasta luego..."); break;
+			}
+		} while (opcion != 4);
+		
+	}
 
 	// juan igual echale un vistazo, esto es mas o menos un copia y pega de mi
 	// taller 1 asique capaz se me olvido cambiar algo
