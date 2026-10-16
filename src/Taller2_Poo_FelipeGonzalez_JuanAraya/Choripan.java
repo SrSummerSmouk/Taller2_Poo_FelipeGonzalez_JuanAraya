@@ -53,4 +53,21 @@ public class Choripan {
 	public double cancularKcalChoripan() {
 		return (largo*ancho)/3;
 	}
+	//toString que se vea bonito
+	@Override
+	public String toString() {
+		return "Choripan | " + participante
+				+ " | " + largo + " cm x " + ancho + " cm"
+				+ " | " + fecha
+				+ " | " + redondear(cancularKcalChoripan()) + " kcal";
+	}
+	
+	//redondeado 
+	private String redondear(double v) {
+		long r = Math.round(v * 100);
+		long ent = r / 100;
+		long dec = Math.abs(r % 100);
+		if (dec < 10) return ent + ".0" + dec;
+		return ent + "." + dec;
+	}
 }
