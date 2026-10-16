@@ -426,6 +426,10 @@ public class Main {
 		}
 	}
 	
+	private static boolean participantesVacio() {
+	    return cantPersonas == 0;
+	}
+	
 	private static String leerFecha(String prompt) {
 	    while (true) {
 	        System.out.print(prompt);
