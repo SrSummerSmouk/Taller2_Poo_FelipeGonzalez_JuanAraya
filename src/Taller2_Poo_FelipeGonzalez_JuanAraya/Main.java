@@ -170,6 +170,113 @@ public class Main {
 		
 	}
 
+	private static void diasEbrio() {
+        System.out.println();
+        System.out.println("DIAS EBRIO POR USUARIO");
+        System.out.println("(se cuenta un dia ebrio con 2 L o mas en la misma fecha)");
+        System.out.println(padR("Usuario", 14) + padR("Dias ebrio", 12) + "Detalle");
+
+        for (int i = 0; i < cantPersonas; i++) {
+            String nombre = personas[i].getNombre();
+
+            //fechas unicas
+            String[] fechas = new String[cantTerre];
+            int nFechas = 0;
+            for (int j = 0; j < cantTerre; j++) {
+                if (terremotosHistorial[j].getParticipanteString().equals(nombre)) {
+                    String f = terremotosHistorial[j].getFecha();
+                    boolean existe = false;
+                    for (int k = 0; k < nFechas; k++)
+                        if (fechas[k].equals(f)) {
+                        	existe = true; 
+                        	break; 
+                        }
+                    if (!existe) {
+                    	fechas[nFechas++] = f;
+                    }
+                }
+            }
+
+            int dias = 0;
+            String det = "";
+            for (int k = 0; k < nFechas; k++) {
+                double total = 0;
+                for (int j = 0; j < cantTerre; j++) {
+                    if (terremotosHistorial[j].getParticipanteString().equals(nombre) && terremotosHistorial[j].getFecha().equals(fechas[k])) {
+                        total += terremotosHistorial[j].getLitros();
+                    }
+                }
+                if (total >= 2.0) {
+                    dias++;
+                    if (det.length() > 0) det = det + ", ";
+                    det = det + fechas[k] + " (" + redondear(total) + " L)";
+                }
+            }
+            String detStr;
+            if (det.length() == 0) {
+                detStr = "-";
+            } else {
+                detStr = det;
+            }
+            System.out.println(padR(nombre, 14) + padR("" + dias, 12) + detStr);
+        }
+    }
+
+	private static void kcalPorUsuario() {
+        System.out.println();
+        System.out.println("KCAL POR USUARIO");
+        System.out.println(padR("Usuario", 14) + padR("Choripan", 12)
+                + padR("Terremoto", 12) + "Total");
+        double granTotal = 0;
+        for (int i = 0; i < cantPersonas; i++) {
+            String nombre = personas[i].getNombre();
+            double kc = 0, kt = 0;
+            for (int j = 0; j < cantChori; j++)
+                if (choripanesHistorial[j].getParticipante().equals(nombre))
+                    kc += choripanesHistorial[j].cancularKcalChoripan();
+            for (int j = 0; j < cantTerre; j++)
+                if (terremotosHistorial[j].getParticipanteString().equals(nombre))
+                    kt += terremotosHistorial[j].calcularKcalTerremoto();
+            double total = kc + kt;
+            granTotal += total;
+            System.out.println(padR(nombre, 14) + padR(redondear(kc), 12) + padR(redondear(kt), 12) + redondear(total));
+        }
+        System.out.println();
+        System.out.println("Consumo total de la fonda: " + redondear(granTotal) + " kcal");
+    }
+
+	private static void terremotosPorUsuario() {
+        System.out.println();
+        System.out.println("TERREMOTOS POR USUARIO");
+        System.out.println(padR("Usuario", 16) + padR("Cantidad", 12) + "Litros");
+        for (int i = 0; i < cantPersonas; i++) {
+            String nombre = personas[i].getNombre();
+            int c = 0;
+            double l = 0;
+            for (int j = 0; j < cantTerre; j++) {
+                if (terremotosHistorial[j].getParticipanteString().equals(nombre)) {
+                    c++;
+                    l += terremotosHistorial[j].getLitros();
+                }
+            }
+            System.out.println(padR(nombre, 16) + padR("" + c, 12) + redondear(l) + " L");
+        }
+    }
+	private static void choripanesPorUsuario() {
+        System.out.println();
+        System.out.println("CHORIPANES POR USUARIO");
+        System.out.println(padR("Usuario", 16) + "Cantidad");
+        for (int i = 0; i < cantPersonas; i++) {
+            String nombre = personas[i].getNombre();
+            int c = 0;
+            for (int j = 0; j < cantChori; j++)
+                if (choripanesHistorial[j].getParticipante().equals(nombre)){
+                	c++;
+                }
+            System.out.println(padR(nombre, 16) + c);
+        }
+    }
+
 	private static double totalLitros() {
 		double l =0;
 		for(int i=0;i<cantTerre;i++) {
