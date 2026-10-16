@@ -63,7 +63,7 @@ public class Choripan {
 	}
 	
 	//redondeado 
-	private String redondear(double v) {
+	public String redondear(double v) {
 		long r = Math.round(v * 100);
 		long ent = r / 100;
 		long dec = Math.abs(r % 100);

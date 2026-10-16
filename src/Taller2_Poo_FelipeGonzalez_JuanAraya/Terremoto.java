@@ -51,8 +51,8 @@ public class Terremoto {
 				+ " | " + fecha
 				+ " | " + redondear(calcularKcalTerremoto()) + " kcal";
 	}
-	
-	private String redondear(double v) {
+	S
+	public String redondear(double v) {
 		long r = Math.round(v * 100);
 		long ent = r / 100;
 		long dec = Math.abs(r % 100);
