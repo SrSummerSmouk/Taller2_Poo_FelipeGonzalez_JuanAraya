@@ -152,7 +152,7 @@ public class Main {
 				break;
 			case 2:
 				System.out.println("Total de terremotos tomados: "+cantTerre
-						+ " ("+redondear(totalLitros())+ " litros en total");
+						+ " ("+redondear(totalLitros())+ " litros en total)");
 				break;
 			case 3:
 				choripanesPorUsuario();
