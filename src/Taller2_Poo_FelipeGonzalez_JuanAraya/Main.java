@@ -1,5 +1,8 @@
 package Taller2_Poo_FelipeGonzalez_JuanAraya;
 
+//Integrante 1: Juan Araya, RUT: 21.566.260-8, Carrera: ITI
+//Integrante 2: Felipe Gonzalez, RUT: 21.776.516-1, carrera: ITI
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,8 +10,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-//Integrante 1: Juan Araya, RUT: 21.566.260-8, Carrera: ITI
-//Integrante 2: Felipe Gonzalez, RUT: 21.776.516-1, carrera: ITI
 public class Main {
 	static Persona[] personas = new Persona[200];
 	static int cantPersonas = 0;
@@ -82,18 +83,18 @@ public class Main {
 			System.out.print(prompt);
 			String linea = sc.nextLine().trim();
 			if (linea.isEmpty()) {
-				System.out.println("[Error]: no ingreso ninguna opcion. Intente nuevamente.");
+				System.out.println("No hay opción ingresada intente nuevamente.");
 				continue;
 			}
 			try {
 				int v = Integer.parseInt(linea);
 				if (v < min || v > max) {
-					System.out.println("[Error]: opcion fuera de rango. Intente nuevamente.");
+					System.out.println("Opcion Invalida intente nuevamente.");
 					continue;
 				}
 				return v;
 			} catch (NumberFormatException e) {
-				System.out.println("[Error]: la opcion debe ser un numero entre " + min + " y " + max + ".");
+				System.out.println("Debe ser un numero entre " + min + " y " + max + ".");
 			}
 		}
 	}
@@ -104,7 +105,6 @@ public class Main {
 		int opcion;
 		do {
 			System.out.println();
-			System.out.println("===========================================");
 			System.out.println("LA FONDA PAPU");
 			System.out.println("Registros cargados: " + (cantChori + cantTerre));
 			System.out.println("1) Ver registros");
@@ -161,8 +161,8 @@ public class Main {
 
 	private static void mostrarChoripanes() {
 		System.out.println();
-		System.out.println("=============== CHORIPANES ===============");
-		System.out.println("#   Consumidor     Largo   Ancho   Fecha         KCal");
+		System.out.println("CHORIPANES");
+		System.out.println("Consumidor Largo Ancho Fecha KCal");
 		int total = 0;
 		for (int i = 0; i < cantChori; i++) {
 			Choripan c = choripanesHistorial[i];
@@ -178,8 +178,8 @@ public class Main {
 
 	private static void mostrarTerremotos() {
 		System.out.println();
-		System.out.println("=============== TERREMOTOS ===============");
-		System.out.println("#   Consumidor     Litros   Fecha         KCal");
+		System.out.println("TERREMOTOS");
+		System.out.println("Consumidor Litros Fecha KCal");
 		int total = 0;
 		double litros = 0;
 		for (int i = 0; i < cantTerre; i++) {
@@ -200,11 +200,11 @@ public class Main {
 		int op;
 		do {
 			System.out.println();
-			System.out.println("========== ACTUALIZAR REGISTROS ==========");
-			System.out.println("[1] Agregar");
-			System.out.println("[2] Editar");
-			System.out.println("[3] Eliminar");
-			System.out.println("[4] Volver al menu principal");
+			System.out.println("ACTUALIZAR REGISTROS");
+			System.out.println("1) Agregar");
+			System.out.println("2) Editar");
+			System.out.println("3) Eliminar");
+			System.out.println("4) Volver al menu principal");
 			op = leerEntero("Seleccione una opcion: ", 1, 4);
 			switch (op) {
 			case 1:
@@ -223,30 +223,30 @@ public class Main {
 	private static void agregar() {
 		System.out.println();
 		System.out.println("Tipo de registro:");
-		System.out.println("[1] Choripan");
-		System.out.println("[2] Terremoto");
-		System.out.println("[3] Cancelar");
+		System.out.println("1) Choripan");
+		System.out.println("2) Terremoto");
+		System.out.println("3) Cancelar");
 		int tipo = leerEntero("Seleccione una opcion: ", 1, 3);
 		if (tipo == 3)
 			return;
 
 		if (participantesVacio()) {
-			System.out.println("[Error]: no hay participantes cargados.");
+			System.out.println("no hay participantes");
 			return;
 		}
 		if (tipo == 1 && cantChori >= 200) {
-			System.out.println("[Error]: capacidad maxima de choripanes alcanzada (200).");
+			System.out.println("capacidad maxima de choripanes alcanzada (200).");
 			return;
 		}
 		if (tipo == 2 && cantTerre >= 200) {
-			System.out.println("[Error]: capacidad maxima de terremotos alcanzada (200).");
+			System.out.println("capacidad maxima de terremotos alcanzada (200).");
 			return;
 		}
 
 		System.out.println();
 		System.out.println("Consumidores disponibles:");
 		for (int i = 0; i < cantPersonas; i++) {
-			System.out.println("[" + (i + 1) + "] " + personas[i].getNombre());
+			System.out.println((i + 1) + ") " + personas[i].getNombre());
 		}
 		int idx = leerEntero("Seleccione el consumidor: ", 1, cantPersonas);
 		String consumidor = personas[idx - 1].getNombre();
@@ -258,7 +258,7 @@ public class Main {
 			choripanesHistorial[cantChori] = new Choripan(consumidor, largo, ancho, fecha);
 			cantChori++;
 			sobreEscribirConsumo();
-			System.out.println(">> Registro agregado correctamente y guardado en Consumido.txt");
+			System.out.println("Registro agregado correctamente y guardado en Consumido.txt");
 			System.out.println(choripanesHistorial[cantChori - 1].toString());
 		} else {
 			double litros = leerDouble("Litros del terremoto: ");
@@ -266,7 +266,7 @@ public class Main {
 			terremotosHistorial[cantTerre] = new Terremoto(consumidor, litros, fecha);
 			cantTerre++;
 			sobreEscribirConsumo();
-			System.out.println(">> Registro agregado correctamente y guardado en Consumido.txt");
+			System.out.println("Registro agregado correctamente y guardado en Consumido.txt");
 			System.out.println(terremotosHistorial[cantTerre - 1].toString());
 		}
 	}
@@ -274,9 +274,9 @@ public class Main {
 	private static void editar() {
 		System.out.println();
 		System.out.println("Tipo de registro a editar:");
-		System.out.println("[1] Choripan");
-		System.out.println("[2] Terremoto");
-		System.out.println("[3] Cancelar");
+		System.out.println("1) Choripan");
+		System.out.println("2) Terremoto");
+		System.out.println("3) Cancelar");
 		int tipo = leerEntero("Seleccione una opcion: ", 1, 3);
 		if (tipo == 3)
 			return;
@@ -293,7 +293,7 @@ public class Main {
 			return;
 		}
 		System.out.println();
-		System.out.println("#   Consumidor     Largo   Ancho   Fecha");
+		System.out.println("Consumidor Largo Ancho Fecha");
 		for (int i = 0; i < cantChori; i++) {
 			Choripan c = choripanesHistorial[i];
 			System.out.println(padR("" + (i + 1), 4) + padR(c.getParticipante(), 15) + padR(c.getLargo() + " cm", 8)
@@ -305,15 +305,15 @@ public class Main {
 
 		Choripan c = choripanesHistorial[sel - 1];
 		System.out.println();
-		System.out.println("Registro actual -> " + c.toString());
+		System.out.println("Registro actual = " + c.toString());
 		System.out.println("Deje el campo vacio para mantener el valor actual.");
 
-		System.out.print("Consumidor [" + c.getParticipante() + "]: ");
+		System.out.print("Consumidor = " + c.getParticipante());
 		String nc = sc.nextLine().trim();
 		if (!nc.isEmpty())
 			c.setParticipante(nc);
 
-		System.out.print("Largo [" + c.getLargo() + "]: ");
+		System.out.print("Largo =" + c.getLargo());
 		String s = sc.nextLine().trim();
 		if (!s.isEmpty())
 			try {
@@ -323,10 +323,10 @@ public class Main {
 				else
 					System.out.println("Valor invalido, se mantiene el anterior.");
 			} catch (NumberFormatException e) {
-				System.out.println(">> Valor invalido, se mantiene el anterior.");
+				System.out.println("Valor invalido, se mantiene el anterior.");
 			}
 
-		System.out.print("Ancho [" + c.getAncho() + "]: ");
+		System.out.print("Ancho =" + c.getAncho());
 		s = sc.nextLine().trim();
 		if (!s.isEmpty())
 			try {
@@ -339,7 +339,7 @@ public class Main {
 				System.out.println("Valor invalido, se mantiene el anterior.");
 			}
 
-		System.out.print("Fecha [" + c.getFecha() + "]: ");
+		System.out.print("Fecha =" + c.getFecha());
 		String nf = sc.nextLine().trim();
 		if (!nf.isEmpty() && nf.matches("\\d{4}-\\d{2}-\\d{2}"))
 			c.setFecha(nf);
@@ -355,7 +355,7 @@ public class Main {
 			return;
 		}
 		System.out.println();
-		System.out.println("#   Consumidor     Litros   Fecha");
+		System.out.println("Consumidor Litros Fecha");
 		for (int i = 0; i < cantTerre; i++) {
 			Terremoto t = terremotosHistorial[i];
 			System.out.println(padR("" + (i + 1), 4) + padR(t.getParticipanteString(), 15)
@@ -367,15 +367,15 @@ public class Main {
 
 		Terremoto t = terremotosHistorial[sel - 1];
 		System.out.println();
-		System.out.println("Registro actual -> " + t.toString());
+		System.out.println("Registro actual = " + t.toString());
 		System.out.println("Deje el campo vacio para mantener el valor actual.");
 
-		System.out.print("Consumidor [" + t.getParticipanteString() + "]: ");
+		System.out.print("Consumidor =" + t.getParticipanteString());
 		String nc = sc.nextLine().trim();
 		if (!nc.isEmpty())
 			t.setParticipanteString(nc);
 
-		System.out.print("Litros [" + t.getLitros() + "]: ");
+		System.out.print("Litros = " + t.getLitros());
 		String s = sc.nextLine().trim();
 		if (!s.isEmpty())
 			try {
@@ -388,7 +388,7 @@ public class Main {
 				System.out.println("Valor invalido, se mantiene el anterior.");
 			}
 
-		System.out.print("Fecha [" + t.getFecha() + "]: ");
+		System.out.print("Fecha = " + t.getFecha());
 		String nf = sc.nextLine().trim();
 		if (!nf.isEmpty() && nf.matches("\\d{4}-\\d{2}-\\d{2}"))
 			t.setFecha(nf);
@@ -401,9 +401,9 @@ public class Main {
 	private static void eliminar() {
 		System.out.println();
 		System.out.println("Tipo de registro a eliminar:");
-		System.out.println("[1] Choripan");
-		System.out.println("[2] Terremoto");
-		System.out.println("[3] Cancelar");
+		System.out.println("1) Choripan");
+		System.out.println("2) Terremoto");
+		System.out.println("3) Cancelar");
 		int tipo = leerEntero("Seleccione una opcion: ", 1, 3);
 		if (tipo == 3)
 			return;
@@ -420,7 +420,7 @@ public class Main {
 			return;
 		}
 		System.out.println();
-		System.out.println("#   Consumidor     Largo   Ancho   Fecha");
+		System.out.println("onsumidor Largo Ancho Fecha");
 		for (int i = 0; i < cantChori; i++) {
 			Choripan c = choripanesHistorial[i];
 			System.out.println(padR("" + (i + 1), 4) + padR(c.getParticipante(), 15) + padR(c.getLargo() + " cm", 8)
@@ -431,7 +431,7 @@ public class Main {
 			return;
 
 		int idx = sel - 1;
-		System.out.print("Confirma la eliminacion de \"" + choripanesHistorial[idx].toString() + "\"? (s/n): ");
+		System.out.print("Confirma la eliminacion de \"" + choripanesHistorial[idx].toString() + "\"? (s/n): "); //asi se ve mas bonito
 		String conf = sc.nextLine().trim();
 		if (!conf.equalsIgnoreCase("s")) {
 			System.out.println("Eliminacion cancelada.");
@@ -454,7 +454,7 @@ public class Main {
 			return;
 		}
 		System.out.println();
-		System.out.println("#   Consumidor     Litros   Fecha");
+		System.out.println("Consumidor Litros Fecha");
 		for (int i = 0; i < cantTerre; i++) {
 			Terremoto t = terremotosHistorial[i];
 			System.out.println(padR("" + (i + 1), 4) + padR(t.getParticipanteString(), 15)
