@@ -23,6 +23,44 @@ public class Terremoto {
 		this.fecha = fecha;
 	}
 	
+	public void setParticipanteString(String participanteString) {
+		this.participanteString = participanteString;
+	}
+
+	public void setLitros(double litros) {
+		this.litros = litros;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+	
+	public String toLineaArchivo() {
+		return "Terremoto;" + participanteString + ";" + litrosCorto() + ";" + fecha;
+	}
+	
+	private String litrosCorto() {
+		if (litros == Math.floor(litros)) return "" + (long) litros;
+		return "" + litros;
+	}
+	
+	@Override
+	public String toString() {
+		return "Terremoto | " + participanteString
+				+ " | " + litrosCorto() + " L"
+				+ " | " + fecha
+				+ " | " + redondear(calcularKcalTerremoto()) + " kcal";
+	}
+	
+	private String redondear(double v) {
+		long r = Math.round(v * 100);
+		long ent = r / 100;
+		long dec = Math.abs(r % 100);
+		if (dec < 10) return ent + ".0" + dec;
+		return ent + "." + dec;
+	}
+
+
 	public double calcularKcalTerremoto() {
 		return (litros*10)/3;
 	}
