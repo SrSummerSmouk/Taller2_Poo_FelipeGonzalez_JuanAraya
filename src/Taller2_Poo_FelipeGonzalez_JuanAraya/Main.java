@@ -131,6 +131,54 @@ public class Main {
 
 	}
 
+	private static void menuMetricas() {
+		int opcion;
+		
+		do {
+			System.out.println();
+			System.out.println("CALCULAR METRICAS");
+			System.out.println("1) Choripanes comidos en total");
+			System.out.println("2) Terremotos tomados en total");
+			System.out.println("3) Choripanes comidos por usuario");
+			System.out.println("4) Terremotos tomados por usuario");
+			System.out.println("5) KCal consumidas por usuario");
+			System.out.println("6) Dias ebrios por usuario");
+			System.out.println("7) Volver al menú principal");
+			opcion = leerEntero("Seleccione una opción: ", 1,7);
+			
+			switch(opcion) {
+			case 1:
+				System.out.println("Total de choripanes comidos: "+cantChori);
+				break;
+			case 2:
+				System.out.println("Total de terremotos tomados: "+cantTerre
+						+ " ("+redondear(totalLitros())+ " litros en total");
+			case 3:
+				choripanesPorUsuario();
+				break;
+			case 4:
+				terremotosPorUsuario();
+				break;
+			case 5:
+				kcalPorUsuario();
+				break;
+			case 6:
+				diasEbrio();
+				break;
+			}
+		}while(opcion !=7);
+		
+	}
+
+	private static double totalLitros() {
+		double l =0;
+		for(int i=0;i<cantTerre;i++) {
+			l+= terremotosHistorial[i].getLitros();
+		}
+		
+		return l;
+	}
+
 	private static void pausar() {
 		System.out.print("Presione ENTER para continuar...");
 		sc.nextLine();
@@ -512,6 +560,14 @@ public class Main {
 			// TODO: handle exception
 			System.out.println("[ERROR] NO SE PUEDE SOBREESCRIBIR CONSUMIDO.TXT\n");
 		}
+	}
+	
+	private static String redondear(double v) {
+	    long r = (long) (v * 100 + 0.5);
+	    long ent = r / 100;
+	    long dec = Math.abs(r % 100);
+	    if (dec < 10) return ent + ".0" + dec;
+	    return ent + "." + dec;
 	}
 
 }
