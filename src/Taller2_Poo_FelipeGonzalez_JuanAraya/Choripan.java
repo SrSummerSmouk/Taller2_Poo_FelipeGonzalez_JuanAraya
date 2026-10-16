@@ -29,6 +29,26 @@ public class Choripan {
 		this.fecha = fecha;
 	}
 
+	public void setParticipante(String participante) {
+		this.participante = participante;
+	}
+
+	public void setLargo(int largo) {
+		this.largo = largo;
+	}
+
+	public void setAncho(int ancho) {
+		this.ancho = ancho;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+	//es para el formato del archivo
+	public String toLineaArchivo() {
+		return "Choripan;" + participante + ";" + largo + ";" + ancho + ";" + fecha;
+	}
+
 	//este es el metodo para calcular kcal
 	public double cancularKcalChoripan() {
 		return (largo*ancho)/3;

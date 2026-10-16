@@ -18,6 +18,8 @@ public class Main {
 	static int cantTerre = 0;
 
 	public static void main(String[] args) {
+		lectorParticipantes();
+		lectorConsumo();
 		menu();
 	}
 
@@ -27,7 +29,7 @@ public class Main {
 			Scanner scanner = new Scanner(new File("Consumido.txt"));
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine();
-				String[] partes = line.split(",");
+				String[] partes = line.split(";");
 				String consumo = partes[0];
 				if (consumo.equalsIgnoreCase("Terremoto")) {
 					String participante = partes[1];
