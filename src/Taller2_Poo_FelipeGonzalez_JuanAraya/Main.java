@@ -1,7 +1,7 @@
 package Taller2_Poo_FelipeGonzalez_JuanAraya;
 
-//Integrante 1: Juan Araya, RUT: 21.566.260-8, Carrera: ITI
-//Integrante 2: Felipe Gonzalez, RUT: 21.776.516-1, carrera: ITI
+//Integrante 1: Felipe Gonzalez, RUT: 21.776.516-1, carrera: ITI
+//Integrante 2: Juan Araya, RUT: 21.566.260-8, Carrera: ITI
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -407,8 +407,8 @@ public class Main {
 		String consumidor = personas[idx - 1].getNombre();
 
 		if (tipo == 1) {
-			int largo = (int) leerDouble("Largo del choripan (cm): ");
-			int ancho = (int) leerDouble("Ancho del choripan (cm): ");
+			int largo = (int) leerEnteroPositivo("Largo del choripan (cm): ");
+			int ancho = (int) leerEnteroPositivo("Ancho del choripan (cm): ");
 			String fecha = leerFecha("Fecha (YYYY-MM-DD): ");
 			choripanesHistorial[cantChori] = new Choripan(consumidor, largo, ancho, fecha);
 			cantChori++;
@@ -424,6 +424,84 @@ public class Main {
 			System.out.println("Registro agregado correctamente y guardado en Consumido.txt");
 			System.out.println(terremotosHistorial[cantTerre - 1].toString());
 		}
+	}
+	
+	private static String leerFecha(String prompt) {
+	    while (true) {
+	        System.out.print(prompt);
+	        String f = sc.nextLine().trim();
+	        if (esFechaValida(f)) {
+	            return f;
+	        }
+	        System.out.println("Formato de fecha invalido (use YYYY-MM-DD).");
+	    }
+	}//una ayudita para el formato de las fechas
+	private static boolean esFechaValida(String f) {
+	    String[] partes = f.split("-");
+	    if (partes.length != 3) return false;
+
+	    try {
+	        int anio = Integer.parseInt(partes[0]);
+	        int mes  = Integer.parseInt(partes[1]);
+	        int dia  = Integer.parseInt(partes[2]);
+
+	        if (mes < 1 || mes > 12){
+	        	return false;
+	        }
+	        if (dia < 1 || dia > 31){
+	        	return false;
+	        }
+
+	        if (partes[0].length() != 4) {
+	        	return false;
+	        }
+
+	        return true;
+	    } catch (NumberFormatException e) {
+	        return false;
+	    }
+	}
+
+	private static double leerDouble(String prompt) {
+	    while (true) {
+	        System.out.print(prompt);
+	        String linea = sc.nextLine().trim();
+	        if (linea.isEmpty()) {
+	            System.out.println("No hay opción ingresada intente nuevamente.");
+	            continue;
+	        }
+	        try {
+	            double v = Double.parseDouble(linea);
+	            if (v <= 0) {
+	                System.out.println("El valor debe ser mayor a 0.");
+	                continue;
+	            }
+	            return v;
+	        } catch (NumberFormatException e) {
+	            System.out.println("Debe ingresar un numero valido.");
+	        }
+	    }
+	}
+	
+	private static int leerEnteroPositivo(String prompt) {
+	    while (true) {
+	        System.out.print(prompt);
+	        String linea = sc.nextLine().trim();
+	        if (linea.isEmpty()) {
+	            System.out.println("No hay opción ingresada intente nuevamente.");
+	            continue;
+	        }
+	        try {
+	            int v = Integer.parseInt(linea);
+	            if (v <= 0) {
+	                System.out.println("El valor debe ser mayor a 0.");
+	                continue;
+	            }
+	            return v;
+	        } catch (NumberFormatException e) {
+	            System.out.println("Debe ingresar un numero entero valido.");
+	        }
+	    }
 	}
 
 	private static void editar() {
