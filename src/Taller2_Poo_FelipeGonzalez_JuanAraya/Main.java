@@ -727,8 +727,8 @@ public class Main {
 			// este de aqui es para escribir chiropanes btw
 			for (int i = 0; i < cantChori; i++) {
 				if (choripanesHistorial[i] != null) {
-					String line = "Choripan," + choripanesHistorial[i].getParticipante() + ","
-							+ choripanesHistorial[i].getLargo() + "," + choripanesHistorial[i].getAncho() + ","
+					String line = "Choripan;" + choripanesHistorial[i].getParticipante() + ";"
+							+ choripanesHistorial[i].getLargo() + ";" + choripanesHistorial[i].getAncho() + ";"
 							+ choripanesHistorial[i].getFecha();
 					bw.write(line);
 					bw.newLine();
@@ -738,8 +738,8 @@ public class Main {
 			for (int i = 0; i < cantTerre; i++) {
 				if (terremotosHistorial[i] != null) {
 
-					String line = "Terremoto," + terremotosHistorial[i].getParticipanteString() + ","
-							+ terremotosHistorial[i].getLitros() + "," + terremotosHistorial[i].getFecha();
+					String line = "Terremoto;" + terremotosHistorial[i].getParticipanteString() + ";"
+							+ terremotosHistorial[i].getLitros() + ";" + terremotosHistorial[i].getFecha();
 					bw.write(line);
 					bw.newLine();
 				}
