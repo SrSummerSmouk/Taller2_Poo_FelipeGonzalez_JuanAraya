@@ -153,6 +153,7 @@ public class Main {
 			case 2:
 				System.out.println("Total de terremotos tomados: "+cantTerre
 						+ " ("+redondear(totalLitros())+ " litros en total");
+				break;
 			case 3:
 				choripanesPorUsuario();
 				break;
@@ -576,10 +577,10 @@ public class Main {
 				System.out.println("Valor invalido, se mantiene el anterior.");
 			}
 
-		System.out.print("Fecha =" + c.getFecha());
+		System.out.print("Fecha= " + c.getFecha());
 		String nf = sc.nextLine().trim();
-		if (!nf.isEmpty() && nf.matches("\\d{4}-\\d{2}-\\d{2}"))
-			c.setFecha(nf);
+		if (!nf.isEmpty() && esFechaValida(nf))
+		    c.setFecha(nf);
 
 		sobreEscribirConsumo();
 		System.out.println("Registro actualizado correctamente y guardado en Consumido.txt");
@@ -625,10 +626,10 @@ public class Main {
 				System.out.println("Valor invalido, se mantiene el anterior.");
 			}
 
-		System.out.print("Fecha = " + t.getFecha());
+		System.out.print("Fecha= " + t.getFecha());
 		String nf = sc.nextLine().trim();
-		if (!nf.isEmpty() && nf.matches("\\d{4}-\\d{2}-\\d{2}"))
-			t.setFecha(nf);
+		if (!nf.isEmpty() && esFechaValida(nf))
+		    t.setFecha(nf);
 
 		sobreEscribirConsumo();
 		System.out.println("Registro actualizado correctamente y guardado en Consumido.txt");

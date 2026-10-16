@@ -53,13 +53,12 @@ public class Terremoto {
 	}
 	
 	public String redondear(double v) {
-		long r = Math.round(v * 100);
-		long ent = r / 100;
-		long dec = Math.abs(r % 100);
-		if (dec < 10) return ent + ".0" + dec;
-		return ent + "." + dec;
+	    long r = (long) (v * 100 + 0.5);
+	    long ent = r / 100;
+	    long dec = Math.abs(r % 100);
+	    if (dec < 10) return ent + ".0" + dec;
+	    return ent + "." + dec;
 	}
-
 
 	public double calcularKcalTerremoto() {
 		return (litros*10)/3;
