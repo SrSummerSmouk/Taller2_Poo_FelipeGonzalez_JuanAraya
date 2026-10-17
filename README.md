@@ -16,3 +16,8 @@ Menu en consola de comandos - posee
   *  4) Terremotos tomados por usuario
   *  5) KCal consumidas por usuario
   *  6) Dias ebrios por usuario
+
+Clonar el repositorio
+```bash
+git clone https://github.com/SrSummerSmouk/Taller2_Poo_FelipeGonzalez_JuanAraya.git
+cd Taller2_Poo_FelipeGonzalez_JuanAraya
